@@ -1,3 +1,5 @@
 /dsService
 /.vscode
-/src/app/.env
+
+# Environment variables
+src/app/.env
