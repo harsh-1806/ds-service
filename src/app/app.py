@@ -8,19 +8,21 @@ from dotenv import load_dotenv
 from services.messageService import MessageService
 
 
-load_dotenv()
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
 
 messageService = MessageService()
 
-server = os.getenv("SERVER_ADDRESS")
+load_dotenv()
+
+kafka_host = os.getenv("KAFKA_HOST", "localhost")
+kafka_port = os.getenv("KAFKA_PORT", "9092")
 producer = KafkaProducer(
-        bootstrap_servers = [f'{server}:9092'],
+        bootstrap_servers = [f'{kafka_host}:{kafka_port}'],
         value_serializer = lambda v: json.dumps(v).encode('utf-8')
     )
 
-@app.route('/v1/ds/message', methods=['POST'])
+@app.route('/api/v1/ds/message', methods=['POST'])
 def handle_message() :
     try:
         message = request.json.get('message')
@@ -34,13 +36,8 @@ def handle_message() :
             status=200,
             mimetype='application/json'
         )
-        producer
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route("/", methods=['GET'])
-def handle_get():
-    return "Hello, World"
-
 if __name__ == "__main__":
-    app.run(host="localhost", port=8000, debug=True)
+    app.run(host="localhost", port=8010, debug=True)

@@ -1,12 +1,7 @@
 import os
-from dotenv import load_dotenv
-from typing import Optional
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.pydantic_v1 import BaseModel, Field
-from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_mistralai import ChatMistralAI
-
-from langchain_core.utils.function_calling import convert_pydantic_to_openai_tool
+from dotenv import load_dotenv
 
 from services.Expense import Expense
 
