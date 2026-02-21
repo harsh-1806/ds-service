@@ -3,3 +3,4 @@
 
 # Environment variables
 src/app/.env
+.env

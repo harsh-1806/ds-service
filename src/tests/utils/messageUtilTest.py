@@ -10,8 +10,6 @@ class MessageUtilTest(unittest.TestCase):
         messagesForTest = testUtils.get_messages()
         utils = MessageUtils()
         self.assertTrue(utils.isBankSms(messagesForTest[1]), msg= f"{messagesForTest[1]} is not a BankSms message")
-        # for message in messagesForTest:
-        #     self.assertTrue(utils.isBankSms(message))
 
 
 if __name__ == '__main__':
