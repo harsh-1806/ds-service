@@ -5,7 +5,7 @@ from kafka import KafkaProducer
 import json
 from dotenv import load_dotenv
 
-from services.messageService import MessageService
+from src.app.services.messageService import MessageService
 
 
 app = Flask(__name__)

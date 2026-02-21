@@ -1,5 +1,5 @@
-from services.LLMService import LLMService
-from utils.messageUtil import MessageUtils
+from src.app.services.LLMService import LLMService
+from src.app.utils.messageUtil import MessageUtils
 
 class MessageService:
     def __init__(self) -> None:
