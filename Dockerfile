@@ -1,13 +1,16 @@
 FROM python:3.10.12
+
 WORKDIR /app
 
-COPY ./src/app /app
-COPY requirements.txt /app
+# Copy entire src directory (recommended)
+COPY ./src /app/src
+COPY requirements.txt .
 
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-ENV FLASK_APP=app.py
-
+# Expose port
 EXPOSE 8010
 
-CMD ["flask", "run", "--host=0.0.0.0", "--port=8010"]
+# Run with gunicorn (4 workers)
+CMD ["gunicorn", "src.app.app:app", "-b", "0.0.0.0:8010", "-w", "4"]
